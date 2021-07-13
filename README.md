@@ -1,7 +1,7 @@
-# AllRoadsLeadTo {ignore=true}
+# AllRoadsLeadTo <!-- {ignore=true} -->
 Combining routes that all lead to the same point and have their origins scattered evenly. For example within country borders
 
-## Inspiration {ignore=true}
+## Inspiration <!-- {ignore=true} -->
 This project was inspired by [@ArterialMapping](https://twitter.com/ArterialMapping) who did a beautiful illustration called "The quickest route along primary roadways to Washington D.C. from any point in the United States". This is an attempt to achieve something similar using open source tools.
 
 This project uses:
@@ -19,12 +19,14 @@ This guide will describe:
 
 <!-- code_chunk_output -->
 
-- [Getting started](#getting-started)
-- [Downloading and preparing the OSM data](#downloading-and-preparing-the-osm-data)
-- [Creating a grid of points for the routing engine](#creating-a-grid-of-points-for-the-routing-engine)
-- [Getting the routing engine running](#getting-the-routing-engine-running)
-- [Querying the routes](#querying-the-routes)
-- [Exporting the routes as PDF](#exporting-the-routes-as-pdf)
+- [AllRoadsLeadTo <!-- {ignore=true} -->](#allroadsleadto-ignoretrue-)
+  - [Inspiration <!-- {ignore=true} -->](#inspiration-ignoretrue-)
+  - [Getting started](#getting-started)
+  - [Downloading and preparing the OSM data](#downloading-and-preparing-the-osm-data)
+  - [Creating a grid of points for the routing engine](#creating-a-grid-of-points-for-the-routing-engine)
+  - [Getting the routing engine running](#getting-the-routing-engine-running)
+  - [Querying the routes](#querying-the-routes)
+  - [Exporting the routes as PDF](#exporting-the-routes-as-pdf)
 
 <!-- /code_chunk_output -->
 
