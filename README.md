@@ -1,7 +1,9 @@
-# AllRoadsLeadTo <!-- {ignore=true} -->
+# AllRoadsLeadTo 
 Combining routes that all lead to the same point and have their origins scattered evenly. For example within country borders
 
-## Inspiration <!-- {ignore=true} -->
+![Wien Color](results/wien_color.png)
+
+## Inspiration 
 This project was inspired by [@ArterialMapping](https://twitter.com/ArterialMapping) who did a beautiful illustration called "The quickest route along primary roadways to Washington D.C. from any point in the United States". This is an attempt to achieve something similar using open source tools.
 
 This project uses:
@@ -12,23 +14,9 @@ This project uses:
 - [Python](https://www.python.org) & [pandas](https://pandas.pydata.org/) & [geopandas](https://geopandas.org/)
 - [Inkscape](https://inkscape.org/)
 
-***Installation of QGIS, Inkscape, Python and pandas is not described here.***
+***Installation and detailed description of QGIS, Inkscape, Python and pandas usage is not described here.***
 
-This guide will describe: 
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
-
-<!-- code_chunk_output -->
-
-- [AllRoadsLeadTo <!-- {ignore=true} -->](#allroadsleadto-ignoretrue-)
-  - [Inspiration <!-- {ignore=true} -->](#inspiration-ignoretrue-)
-  - [Getting started](#getting-started)
-  - [Downloading and preparing the OSM data](#downloading-and-preparing-the-osm-data)
-  - [Creating a grid of points for the routing engine](#creating-a-grid-of-points-for-the-routing-engine)
-  - [Getting the routing engine running](#getting-the-routing-engine-running)
-  - [Querying the routes](#querying-the-routes)
-  - [Exporting the routes as PDF](#exporting-the-routes-as-pdf)
-
-<!-- /code_chunk_output -->
+This guide will describe the steps taken to achieve the rusult above. 
 
 
 ## Getting started
@@ -58,18 +46,17 @@ So you end up with one merged file `austria-obayern-schwaben.osm.pbf` which we w
 ## Creating a grid of points for the routing engine
 With the help of the QGIS - Vector ► Research Tool: "regularpoints" we will create a csv file with a list of geographic coordinates that will serve as the starting points of our routes.
 
-There is a file accompanying the austrian OSM data describing its boundaries. `https://download.geofabrik.de/europe/austria.poly`, but unfortunately we wont be able to use it without additional python packages and conversion.
+Use an appropriate polygon (for example the country borders) to define the extent for point - creation. A spacing of 0.05 degrees for "regularpoints" led in this case to 4000 points after clipping. Use the same polygon to clip the point layer. 
+Then save the point - layer in csv format and explicitely include the geometry `GEOMETRY = AS_XY`. The route-creation script expects the csv to only have the fields "fid", "x" and "y".
+
+<!-- There is a file accompanying the austrian OSM data describing its boundaries. `https://download.geofabrik.de/europe/austria.poly`, but unfortunately we wont be able to use it without additional python packages and conversion.
 To first define the extent of the area we are interested in we download the "Admin 0 - Countries" data from [naturalearthdata.com](https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-countries/)
 
 ```
 wget https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip
 ```
-
+ -->
  
-**QGIS Python to create and cut points, then export as csv**
-
-
-
 ## Getting the routing engine running
 
 Download the engine and a config file
@@ -103,6 +90,11 @@ Another script will combine all those routes into one GeoPackage file.
 ```
 python merger.py
 ```
-## Exporting the routes as PDF
-***change Layer Style options, Draw polygons (automated?), export PDF***
-***combine route pdf with polygon pdf as mask in Inscape***
+
+***Following steps include:***
+
+ - changing Layer Style options to enlargen overlapping features
+ - drawing polygons manually
+ - exporting PDFs of route network and sectioning polygons
+ - using the route layer as a mask combine the two pdf in Inkscape
+
